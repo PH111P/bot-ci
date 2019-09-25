@@ -1,5 +1,5 @@
 sudo: false
-dist: trusty
+dist: xenial
 addons:
     apt:
         packages:
@@ -39,31 +39,12 @@ script: ./scripts/build.sh
 after_success: ./scripts/deploy.sh
 matrix:
     include:
-        - python: "2.6"
-          env: "SCRIPTS='
-              ./scripts/build-zsh-and-zpython.sh;
-              ./scripts/build-vim.sh v7.0.112;
-              ./scripts/build-vim.sh master;
-              ./scripts/create-wheels.sh;
-          '"
         - python: "2.7"
           env: 'SCRIPTS="
               ./scripts/build-zsh-and-zpython.sh;
               ./scripts/build-vim.sh v7.0.112;
               ./scripts/build-vim.sh master;
               ./scripts/build-command-t.sh;
-              ./scripts/create-wheels.sh;
-          "'
-        - python: "3.2"
-          env: 'SCRIPTS="
-              ./scripts/build-zsh-and-zpython.sh;
-              ./scripts/build-vim.sh master;
-              ./scripts/create-wheels.sh;
-          "'
-        - python: "3.3"
-          env: 'SCRIPTS="
-              ./scripts/build-zsh-and-zpython.sh;
-              ./scripts/build-vim.sh master;
               ./scripts/create-wheels.sh;
           "'
         - python: "3.4"
@@ -79,6 +60,12 @@ matrix:
               ./scripts/create-wheels.sh;
           "'
         - python: "3.6"
+          env: 'SCRIPTS="
+              ./scripts/build-zsh-and-zpython.sh;
+              ./scripts/build-vim.sh master;
+              ./scripts/create-wheels.sh;
+          "'
+        - python: "3.7"
           env: 'SCRIPTS="
               ./scripts/build-zsh-and-zpython.sh;
               ./scripts/build-vim.sh master;
